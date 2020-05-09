@@ -303,6 +303,8 @@ class _HomeState extends State<Home> {
                           fontWeight: FontWeight.w600),
                     ),
                   ),
+                  _user == null ? Container() :
+                  Text("The user ${_user.firstname} is created Successfully ")
                 ],
               ),
             ),
