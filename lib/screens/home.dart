@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_and_signup/model/user_model.dart';
 import 'package:login_and_signup/widgets/clipper.dart';
 import 'package:http/http.dart' as http;
@@ -10,8 +11,8 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-Future<UserModel> createUser(
-    String email, String firstname, String lastname, String password) async {
+Future<UserModel> createUser(String email, String firstname, String lastname,
+    String password) async {
   final String apiUrl = "https://simple-node-login.herokuapp.com/user/signup";
 
   final response = await http.post(apiUrl, body: {
@@ -46,275 +47,282 @@ class _HomeState extends State<Home> {
           Clipper(),
           Expanded(child: Container(
             child: ListView(
-              scrollDirection: Axis.vertical,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    'First Name',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Container(
-                    height: 20,
-                    child: TextField(
-                      expands: true,
-                      maxLines: null,
-                      minLines: null,
-                      controller: firstNameController,
-                      decoration: InputDecoration.collapsed(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: Divider(
-                    color: Colors.black54,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    'Last Name',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Container(
-                    height: 20,
-                    child: TextField(
-                      expands: true,
-                      maxLines: null,
-                      minLines: null,
-                      controller: lastNameController,
-                      decoration: InputDecoration.collapsed(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: Divider(
-                    color: Colors.black54,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    'Phone Number',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Container(
-                    height: 20,
-                    child: TextField(
-                      expands: true,
-                      maxLines: null,
-                      minLines: null,
-                      controller: phoneNumberController,
-                      decoration: InputDecoration.collapsed(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: Divider(
-                    color: Colors.black54,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Password',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.visibility_off,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {}),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Container(
-                    height: 20,
-                    child: TextField(
-                      expands: true,
-                      maxLines: null,
-                      minLines: null,
-                      controller: passwordController,
-                      decoration: InputDecoration.collapsed(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: Divider(
-                    color: Colors.black54,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Confirm Password',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.visibility_off,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {}),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: Container(
-                    height: 20,
-                    child: TextField(
-                      expands: true,
-                      maxLines: null,
-                      minLines: null,
-                      controller: confirmPasswordController,
-                      decoration: InputDecoration.collapsed(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: Divider(
-                    color: Colors.black54,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Center(
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Center(
-                      child: GestureDetector(
-                        onTap: () async {
-                          final String firstname = firstNameController.text;
-                          final String lastname = lastNameController.text;
-                          final String email = phoneNumberController.text;
-                          final String password = passwordController.text;
-
-                          final UserModel user =
-                          await createUser(email, firstname, lastname, password);
-
-                          setState(() {
-                            _user = user;
-                          });
-                        },
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 50.0),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'Already have an account?',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (_) => Login()));
-                          },
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                                color: Colors.blueAccent,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-
-                        /*     _user == null ? Container() :
-                  Text("The user ${_user.firstname} is created Successfully ")
-
-              */
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                scrollDirection: Axis.vertical,
+                children: <Widget>[
+            Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Text(
+              'First Name',
+              style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
             ),
-          ))
+          ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Container(
+                height: 20,
+                child: TextField(
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  controller: firstNameController,
+                  decoration: InputDecoration.collapsed(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Divider(
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Last Name',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Container(
+                height: 20,
+                child: TextField(
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  controller: lastNameController,
+                  decoration: InputDecoration.collapsed(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Divider(
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Phone Number',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Container(
+                height: 20,
+                child: TextField(
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  controller: phoneNumberController,
+                  decoration: InputDecoration.collapsed(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Divider(
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'Password',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {}),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Container(
+                height: 20,
+                child: TextField(
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  controller: passwordController,
+                  decoration: InputDecoration.collapsed(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Divider(
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'Confirm Password',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {}),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Container(
+                height: 20,
+                child: TextField(
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  controller: confirmPasswordController,
+                  decoration: InputDecoration.collapsed(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Divider(
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Container(
+                height: 45,
+                width: 150,
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Center(
+                  child: GestureDetector(
+                    onTap: () async {
+                      final String firstname = firstNameController.text;
+                      final String lastname = lastNameController.text;
+                      final String email = phoneNumberController.text;
+                      final String password = passwordController.text;
+
+                      final UserModel user =
+                      await createUser(email, firstname, lastname, password);
+
+                      setState(() {
+                        _user = user;
+                      });
+                    },
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: Row(
+                  children: <Widget>[
+                  Text(
+                  'Already have an account?',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Login()));
+                  },
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+
+                _user == null ? Container() :
+                Fluttertoast.showToast(
+                    msg: "The user ${_user.firstname} has Signed Up successfully",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
+    ))]
+    ,
+    )
+    ,
     );
   }
 }
