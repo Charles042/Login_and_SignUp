@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_and_signup/model/user_model.dart';
@@ -15,19 +17,35 @@ Future<UserModel> createUser(String email, String firstname, String lastname,
     String password) async {
   final String apiUrl = "https://simple-node-login.herokuapp.com/user/signup";
 
-  final response = await http.post(apiUrl, body: {
-    "email": email,
-    "password": password,
-    "firstname": firstname,
-    "lastname": lastname
+  var response = await http.post(
+    apiUrl,
+    body: {
+      "email": email,
+      "password": password,
+      "firstname": firstname,
+      "lastname": lastname
+    },
+  ).catchError((e){
+    throw(e);
   });
+  print(response.body);
   if (response.statusCode == 200) {
     final String responseString = response.body;
-
+    showToast(jsonDecode(responseString)['message']);
     return userModelFromJson(responseString);
   } else {
+    showToast("Something");
     return null;
   }
+}
+
+showToast(String msg){
+  Fluttertoast.showToast(
+    msg: "$msg",
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.CENTER,
+    timeInSecForIosWeb: 1,
+  );
 }
 
 class _HomeState extends State<Home> {
