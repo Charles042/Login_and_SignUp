@@ -26,6 +26,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   http: ^0.12.1
   fluttertoast: ^4.0.1
+  progress_indicators: ^0.1.5
+
 
 
 dev_dependencies:
