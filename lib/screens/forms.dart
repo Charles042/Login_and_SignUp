@@ -15,7 +15,7 @@ class _FormScreenState extends State<FormScreen> {
 
   Widget _buildFirstName() {
     return TextFormField(
-      maxLength: 15,
+      maxLength: 5,
       decoration: InputDecoration(
           labelText: 'First Name', labelStyle: TextStyle(fontSize: 16)),
       validator: (String value){
@@ -32,7 +32,7 @@ class _FormScreenState extends State<FormScreen> {
 
   Widget _buildLastName() {
     return TextFormField(
-      maxLength: 15,
+      maxLength: 5,
       decoration: InputDecoration(
           labelText: 'Last Name', labelStyle: TextStyle(fontSize: 16)),
       validator: (String value){
