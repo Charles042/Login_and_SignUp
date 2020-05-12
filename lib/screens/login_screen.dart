@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_and_signup/widgets/login_form.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -13,178 +14,116 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              ClipPath(
-                clipper: BottomShapeClipper(),
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                  ),
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top:20.0),
-                          child: Container(
-                            height: 60,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/images/gem.png'),
-                                fit: BoxFit.fitHeight
-                              ),
+          ClipPath(
+            clipper: BottomShapeClipper(),
+            child: Container(
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+              ),
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top:20.0),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top:15.0),
+                        child: Container(
+                          height: 60,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/gem.png'),
+                              fit: BoxFit.fitHeight
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Welcome Back',
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Text(
-                  'Phone Number',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20),
-                child: Divider(
-                  color: Colors.black54,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Row(
-                  children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
-                      'Password',
+                      'Welcome Back',
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: IconButton(
-                          icon: Icon(
-                            Icons.visibility_off,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () {}),
-                    )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20),
-                child: Divider(
-                  color: Colors.black54,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Expanded(child: Container(
+            child: ListView(
+              children: <Widget>[
+                LoginForm(),
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 7,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.only(right:20.0),
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.blueAccent),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 15),
-              Center(
-                child: Container(
-                  height: 45,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(left:20.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'New User?',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(right:20.0),
                         child: Text(
-                          'Sign Up',
+                          'Forgot Password?',
                           style: TextStyle(
-                              color: Colors.blueAccent,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.blueAccent),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left:20.0),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          'New User?',
+                          style: TextStyle(
+                              color: Colors.grey,
                               fontSize: 17,
                               fontWeight: FontWeight.w600),
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          width: 5,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )
+                )
+
+              ],
+            ),
+          ))
             ],
-          )
-        ],
       ),
     );
   }

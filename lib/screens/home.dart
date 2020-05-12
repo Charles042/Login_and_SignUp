@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_and_signup/model/user_model.dart';
-import 'package:login_and_signup/screens/forms.dart';
+import 'package:login_and_signup/widgets/forms.dart';
 import 'package:login_and_signup/widgets/clipper.dart';
 import 'package:http/http.dart' as http;
 

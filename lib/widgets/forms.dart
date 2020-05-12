@@ -34,7 +34,9 @@ class _FormScreenState extends State<FormScreen> {
     return TextFormField(
       maxLength: 5,
       decoration: InputDecoration(
-          labelText: 'Last Name', labelStyle: TextStyle(fontSize: 16)),
+          labelText: 'Last Name', labelStyle
+
+          : TextStyle(fontSize: 16)),
       validator: (String value){
         if(value.isEmpty){
           return 'Last Name is Required';
