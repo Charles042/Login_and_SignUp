@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
           ClipPath(
             clipper: BottomShapeClipper(),
             child: Container(
-              height: 200,
+              height: 250,
               decoration: BoxDecoration(
                 color: Colors.blueAccent,
               ),
@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.only(top:20.0),
                       child: Padding(
-                        padding: const EdgeInsets.only(top:15.0),
+                        padding: const EdgeInsets.only(top:30.0),
                         child: Container(
                           height: 60,
                           width: 50,
@@ -62,67 +62,69 @@ class _LoginState extends State<Login> {
           SizedBox(
             height: 5,
           ),
-          Expanded(child: Container(
-            child: ListView(
-              children: <Widget>[
-                LoginForm(),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.only(right:20.0),
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.blueAccent),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left:20.0),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'New User?',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {},
+          Expanded(
+            child: Container(
+              child: ListView(
+                children: <Widget>[
+                  LoginForm(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(right:20.0),
                           child: Text(
-                            'Sign Up',
+                            'Forgot Password?',
                             style: TextStyle(
-                                color: Colors.blueAccent,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.blueAccent),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left:20.0),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            'New User?',
+                            style: TextStyle(
+                                color: Colors.grey,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w600),
                           ),
-                        )
-                      ],
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                )
+                  )
 
-              ],
+                ],
+              ),
             ),
-          ))
+          )
             ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _LoginFormState extends State<LoginForm> {
 
   Widget _buildphoneNumber() {
     return TextFormField(
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: 'Phone Number',labelStyle: TextStyle(fontSize: 16)
       ),

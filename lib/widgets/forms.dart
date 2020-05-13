@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class FormScreen extends StatefulWidget {
+class Forms extends StatefulWidget {
   @override
-  _FormScreenState createState() => _FormScreenState();
+  _FormsState createState() => _FormsState();
 }
 
-class _FormScreenState extends State<FormScreen> {
+class _FormsState extends State<Forms> {
   String _firstname;
   String _lastname;
   String _email;
@@ -15,7 +15,6 @@ class _FormScreenState extends State<FormScreen> {
 
   Widget _buildFirstName() {
     return TextFormField(
-      maxLength: 5,
       decoration: InputDecoration(
           labelText: 'First Name', labelStyle: TextStyle(fontSize: 16)),
       validator: (String value){
@@ -32,10 +31,8 @@ class _FormScreenState extends State<FormScreen> {
 
   Widget _buildLastName() {
     return TextFormField(
-      maxLength: 5,
       decoration: InputDecoration(
           labelText: 'Last Name', labelStyle
-
           : TextStyle(fontSize: 16)),
       validator: (String value){
         if(value.isEmpty){

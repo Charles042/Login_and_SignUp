@@ -65,55 +65,54 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
+      body: SafeArea(
+        child: Column(
+    children: <Widget> [
           Clipper(),
           Expanded(
-              child: Container(
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: <Widget>[
-                FormScreen(),
-                SizedBox(
-                  height: 10,
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 50.0),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'Already have an account?',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => Login()));
-                          },
-                          child: Text(
-                            'Login',
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: <Widget>[
+                  Forms(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 50.0),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            'Already have an account?',
                             style: TextStyle(
-                                color: Colors.blueAccent,
+                                color: Colors.grey,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w600),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => Login()));
+                            },
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ))
+                ],
+              ))
         ],
       ),
-    );
+    ));
   }
 }
