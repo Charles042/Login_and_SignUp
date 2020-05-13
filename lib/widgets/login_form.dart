@@ -17,7 +17,7 @@ class _LoginFormState extends State<LoginForm> {
     return TextFormField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        labelText: 'Phone Number',labelStyle: TextStyle(fontSize: 16)
+        labelText: 'Phone Number',
       ),
       validator: (String value) {
         if(value.isEmpty) {
@@ -35,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
     return TextFormField(
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
-          labelText: 'Password', labelStyle: TextStyle(fontSize: 16)),
+          labelText: 'Password', ),
       validator: (String value){
         if(value.isEmpty){
           return 'Password is Required';

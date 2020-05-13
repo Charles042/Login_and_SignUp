@@ -16,7 +16,7 @@ class _FormsState extends State<Forms> {
   Widget _buildFirstName() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'First Name', labelStyle: TextStyle(fontSize: 16)),
+          labelText: 'First Name',),
       validator: (String value){
         if(value.isEmpty){
           return 'First Name is Required';
@@ -32,8 +32,7 @@ class _FormsState extends State<Forms> {
   Widget _buildLastName() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'Last Name', labelStyle
-          : TextStyle(fontSize: 16)),
+          labelText: 'Last Name'),
       validator: (String value){
         if(value.isEmpty){
           return 'Last Name is Required';
@@ -50,7 +49,7 @@ class _FormsState extends State<Forms> {
   Widget _buildEmail() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'Email', labelStyle: TextStyle(fontSize: 16)),
+          labelText: 'Email',),
       validator: (String value){
         if(value.isEmpty){
           return 'Input an Email';
@@ -70,7 +69,7 @@ class _FormsState extends State<Forms> {
     return TextFormField(
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
-          labelText: 'Password', labelStyle: TextStyle(fontSize: 16)),
+          labelText: 'Password', ),
       validator: (String value){
         if(value.isEmpty){
           return 'Password is Required';
