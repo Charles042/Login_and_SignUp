@@ -35,11 +35,10 @@ Future<UserModel> createUser(
   print(response.body);
 
   if (response.statusCode == 200) {
-    final String responseString = response.body;
-    showToast(jsonDecode(responseString)['message']);
-    return userModelFromJson(responseString);
+    showToast(jsonDecode(response.body)['message']);
+    return userModelFromJson(response.body);
   } else {
-    showToast("The user ${firstname}Signed Up successfully");
+    showToast(jsonDecode(response.body)['message']??"Something went wrong");
     return null;
   }
 }

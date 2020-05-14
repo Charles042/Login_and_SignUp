@@ -14,72 +14,93 @@ class _FormsState extends State<Forms> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildFirstName() {
-    return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'First Name',),
-      validator: (String value){
-        if(value.isEmpty){
-          return 'First Name is Required';
-        }
-        return null;
-      },
-      onSaved: (String value){
-        _firstname = value;
-      },
+    return Theme(
+      data: ThemeData(
+        primaryColor: Theme.of(context).accentColor,
+      ),
+      child: TextFormField(
+        decoration: InputDecoration(
+          labelText: 'First Name',
+        ),
+        validator: (String value){
+          if(value.isEmpty){
+            return 'First Name is Required';
+          }
+          return null;
+        },
+        onSaved: (String value){
+          _firstname = value;
+        },
+      ),
     );
   }
 
   Widget _buildLastName() {
-    return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'Last Name'),
-      validator: (String value){
-        if(value.isEmpty){
-          return 'Last Name is Required';
-        }
-        return null;
+    return Theme(
+      data: ThemeData(
+        primaryColor: Theme.of(context).accentColor,
+      ),
+      child: TextFormField(
+        decoration: InputDecoration(
+            labelText: 'Last Name'),
+        validator: (String value){
+          if(value.isEmpty){
+            return 'Last Name is Required';
+          }
+          return null;
 
-      },
-      onSaved: (String value){
-        _lastname = value;
-      },
+        },
+        onSaved: (String value){
+          _lastname = value;
+        },
+      ),
     );
   }
 
   Widget _buildEmail() {
-    return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'Email',),
-      validator: (String value){
-        if(value.isEmpty){
-          return 'Input an Email';
-        }
-        if(!RegExp(r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$").hasMatch(value)) {
-          return 'Please enter a valid emaill';
-        }
-        return null;
-      },
-      onSaved: (String value){
-        _email = value;
-      },
+    return Theme(
+      data: ThemeData(
+        primaryColor: Theme.of(context).accentColor,
+      ),
+      child: TextFormField(
+        decoration: InputDecoration(
+            labelText: 'Email',),
+        validator: (String value){
+          if(value.isEmpty){
+            return 'Input an Email';
+          }
+          if(!RegExp(r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$").hasMatch(value)) {
+            return 'Please enter a valid emaill';
+          }
+          return null;
+        },
+        onSaved: (String value){
+          _email = value;
+        },
+      ),
     );
   }
 
   Widget _buildPassword() {
-    return TextFormField(
-      keyboardType: TextInputType.visiblePassword,
-      decoration: InputDecoration(
-          labelText: 'Password', ),
-      validator: (String value){
-        if(value.isEmpty){
-          return 'Password is Required';
-        }
-        return null;
+    return Theme(
+      data: ThemeData(
+        primaryColor: Theme.of(context).accentColor,
+      ),
+      child: TextFormField(
+        keyboardType: TextInputType.visiblePassword,
+        decoration: InputDecoration(
+            labelText: 'Password', ),
+        validator: (String value){
+          if(value.isEmpty){
+            return 'Password is Required';
+          }
+          return null;
 
-      },
-      onSaved: (String value){
-        _password = value;
-      },
+        },
+        onSaved: (String value){
+          _password = value;
+        },
+      ),
     );
   }
 
