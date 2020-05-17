@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:login_and_signup/model/user_model.dart';
+import 'package:http/http.dart' as http;
 
 class Forms extends StatefulWidget {
   @override
@@ -10,6 +15,55 @@ class _FormsState extends State<Forms> {
   String _lastname;
   String _email;
   String _password;
+
+  bool loading = false;
+
+  Future<UserModel> createUser() async {
+    FormState form = _formKey.currentState;
+    form.save();
+    if(form.validate()){
+      setState(() {
+        loading = true;
+      });
+      final String apiUrl = "https://simple-node-login.herokuapp.com/user/signup";
+      var response = await http.post(
+        apiUrl,
+        body: {
+          "email": _email,
+          "password": _password,
+          "firstname": _firstname,
+          "lastname": _lastname,
+        },
+      ).catchError((e) {
+        throw (e);
+      });
+
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        showToast("User registered succesfully");
+        setState(() {
+          loading = false;
+        });
+        return userModelFromJson(response.body);
+      } else {
+        setState(() {
+          loading = false;
+        });
+        showToast(jsonDecode(response.body)['message']??"Something went wrong");
+        return null;
+      }
+    }
+  }
+
+  showToast(String msg) {
+    Fluttertoast.showToast(
+      msg: "$msg",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+    );
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -122,8 +176,10 @@ class _FormsState extends State<Forms> {
                 SizedBox(
                   height: 20,
                 ),
-                GestureDetector(
-                  onTap: () {},
+                loading
+                    ? CircularProgressIndicator()
+                    : GestureDetector(
+                  onTap:  () => createUser(),
                   child: Container(
                     height: 45,
                     width: 150,
@@ -132,20 +188,12 @@ class _FormsState extends State<Forms> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          if(!_formKey.currentState.validate()){
-                            return ;
-                          }
-                          _formKey.currentState.save();
-                        },
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                   ),

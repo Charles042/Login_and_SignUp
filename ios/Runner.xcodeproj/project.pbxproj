@@ -68,7 +68,6 @@
 				6E8016C26ABDE96178AE0774 /* Pods-Runner.release.xcconfig */,
 				2EB04DC3F32B74137D4AD485 /* Pods-Runner.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -219,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed\n/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" thin\n";
 		};
 		59DC8573A60F83FFD854EDED /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

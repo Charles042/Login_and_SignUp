@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_and_signup/model/user_model.dart';
 import 'package:login_and_signup/widgets/forms.dart';
 import 'package:login_and_signup/widgets/clipper.dart';
-import 'package:http/http.dart' as http;
 
 import 'login_screen.dart';
 
@@ -15,49 +14,11 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-bool loading = true;
-
-Future<UserModel> createUser(
-    String email, String firstname, String lastname, String password) async {
-  final String apiUrl = "https://simple-node-login.herokuapp.com/user/signup";
-  var response = await http.post(
-    apiUrl,
-    body: {
-      "email": email,
-      "password": password,
-      "firstname": firstname,
-      "lastname": lastname
-    },
-  ).catchError((e) {
-    throw (e);
-  });
-
-  print(response.body);
-
-  if (response.statusCode == 200) {
-    showToast(jsonDecode(response.body)['message']);
-    return userModelFromJson(response.body);
-  } else {
-    showToast(jsonDecode(response.body)['message']??"Something went wrong");
-    return null;
-  }
-}
-
-showToast(String msg) {
-  Fluttertoast.showToast(
-    msg: "$msg",
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-  );
-}
-
 class _HomeState extends State<Home> {
   //UserModel _user;
 
   @override
   void initState() {
-    loading = true;
     super.initState();
   }
 
