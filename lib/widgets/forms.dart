@@ -18,7 +18,7 @@ class _FormsState extends State<Forms> {
 
   bool loading = false;
 
-  Future<UserModel> createUser() async {
+  Future <UserModel> createUser() async {
     FormState form = _formKey.currentState;
     form.save();
     if (form.validate()) {
