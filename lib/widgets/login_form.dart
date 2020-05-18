@@ -7,11 +7,10 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-
   String _phoneNumber;
   String _password;
 
-  final GlobalKey <FormState> _loginKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
   Widget _buildphoneNumber() {
     return TextFormField(
@@ -20,36 +19,34 @@ class _LoginFormState extends State<LoginForm> {
         labelText: 'Phone Number',
       ),
       validator: (String value) {
-        if(value.isEmpty) {
+        if (value.isEmpty) {
           return 'Phone Number is required';
         }
         return null;
       },
-      onSaved: (String value){
+      onSaved: (String value) {
         _phoneNumber = value;
       },
     );
   }
 
-  Widget _buildpassWord(){
+  Widget _buildpassWord() {
     return TextFormField(
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
-          labelText: 'Password', ),
-      validator: (String value){
-        if(value.isEmpty){
+        labelText: 'Password',
+      ),
+      validator: (String value) {
+        if (value.isEmpty) {
           return 'Password is Required';
         }
         return null;
-
       },
-      onSaved: (String value){
+      onSaved: (String value) {
         _password = value;
       },
     );
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,30 +62,20 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               height: 20,
             ),
-            GestureDetector(
-              onTap: () {
-                if(!_loginKey.currentState.validate()){
-                  return ;
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.blueAccent,
+              child: Text(
+                'Login',
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+              onPressed: () {
+                if (!_loginKey.currentState.validate()) {
+                  return;
                 }
                 _loginKey.currentState.save();
               },
-              child: Container(
-                height: 45,
-                width: 120,
-                decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Center(
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-              ),
             ),
           ],
         ),

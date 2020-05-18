@@ -21,11 +21,12 @@ class _FormsState extends State<Forms> {
   Future<UserModel> createUser() async {
     FormState form = _formKey.currentState;
     form.save();
-    if(form.validate()){
+    if (form.validate()) {
       setState(() {
         loading = true;
       });
-      final String apiUrl = "https://simple-node-login.herokuapp.com/user/signup";
+      final String apiUrl =
+          "https://simple-node-login.herokuapp.com/user/signup";
       var response = await http.post(
         apiUrl,
         body: {
@@ -50,7 +51,8 @@ class _FormsState extends State<Forms> {
         setState(() {
           loading = false;
         });
-        showToast(jsonDecode(response.body)['message']??"Something went wrong");
+        showToast(
+            jsonDecode(response.body)['message'] ?? "Something went wrong");
         return null;
       }
     }
@@ -76,13 +78,13 @@ class _FormsState extends State<Forms> {
         decoration: InputDecoration(
           labelText: 'First Name',
         ),
-        validator: (String value){
-          if(value.isEmpty){
+        validator: (String value) {
+          if (value.isEmpty) {
             return 'First Name is Required';
           }
           return null;
         },
-        onSaved: (String value){
+        onSaved: (String value) {
           _firstname = value;
         },
       ),
@@ -95,16 +97,14 @@ class _FormsState extends State<Forms> {
         primaryColor: Theme.of(context).accentColor,
       ),
       child: TextFormField(
-        decoration: InputDecoration(
-            labelText: 'Last Name'),
-        validator: (String value){
-          if(value.isEmpty){
+        decoration: InputDecoration(labelText: 'Last Name'),
+        validator: (String value) {
+          if (value.isEmpty) {
             return 'Last Name is Required';
           }
           return null;
-
         },
-        onSaved: (String value){
+        onSaved: (String value) {
           _lastname = value;
         },
       ),
@@ -118,17 +118,20 @@ class _FormsState extends State<Forms> {
       ),
       child: TextFormField(
         decoration: InputDecoration(
-            labelText: 'Email',),
-        validator: (String value){
-          if(value.isEmpty){
+          labelText: 'Email',
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
             return 'Input an Email';
           }
-          if(!RegExp(r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$").hasMatch(value)) {
+          if (!RegExp(
+                  r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")
+              .hasMatch(value)) {
             return 'Please enter a valid emaill';
           }
           return null;
         },
-        onSaved: (String value){
+        onSaved: (String value) {
           _email = value;
         },
       ),
@@ -143,15 +146,15 @@ class _FormsState extends State<Forms> {
       child: TextFormField(
         keyboardType: TextInputType.visiblePassword,
         decoration: InputDecoration(
-            labelText: 'Password', ),
-        validator: (String value){
-          if(value.isEmpty){
+          labelText: 'Password',
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
             return 'Password is Required';
           }
           return null;
-
         },
-        onSaved: (String value){
+        onSaved: (String value) {
           _password = value;
         },
       ),
@@ -163,7 +166,7 @@ class _FormsState extends State<Forms> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left:20.0,right: 20),
+          padding: const EdgeInsets.only(left: 20.0, right: 20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -178,26 +181,16 @@ class _FormsState extends State<Forms> {
                 ),
                 loading
                     ? CircularProgressIndicator()
-                    : GestureDetector(
-                  onTap:  () => createUser(),
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
+                    : RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        color: Colors.blueAccent,
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                        onPressed: () => createUser(),
+                      )
               ],
             ),
           ),

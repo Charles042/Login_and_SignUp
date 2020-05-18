@@ -1,9 +1,9 @@
-import 'dart:convert';
+//import 'dart:convert';
 
 //import 'package:progress_indicators/progress_indicators.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:login_and_signup/model/user_model.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:login_and_signup/model/user_model.dart';
 import 'package:login_and_signup/widgets/forms.dart';
 import 'package:login_and_signup/widgets/clipper.dart';
 
