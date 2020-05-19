@@ -62,20 +62,24 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               height: 20,
             ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              color: Colors.blueAccent,
-              child: Text(
-                'Login',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+            Container(
+              height: 40,
+              width: 140,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: Colors.blueAccent,
+                child: Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                onPressed: () {
+                  if (!_loginKey.currentState.validate()) {
+                    return;
+                  }
+                  _loginKey.currentState.save();
+                },
               ),
-              onPressed: () {
-                if (!_loginKey.currentState.validate()) {
-                  return;
-                }
-                _loginKey.currentState.save();
-              },
             ),
           ],
         ),
