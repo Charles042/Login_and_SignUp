@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:flutter/services.dart';
+import 'package:login_and_signup/model/user_model.dart';
+import 'package:http/http.dart' as http;
 
 class LoginForm extends StatefulWidget {
   @override
@@ -7,44 +13,103 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  String _phoneNumber;
+  String _email;
   String _password;
+
+  bool loading = false;
+
+  Future<UserModel> loginUser() async {
+    FormState form = _loginKey.currentState;
+    form.save();
+    if (form.validate()) {
+      setState(() {
+        loading = true;
+      });
+      final String url = "https://simple-node-login.herokuapp.com/user/signup";
+      var response = await http.post(
+        url,
+        body: {
+          "email": _email,
+          "password": _password,
+        },
+      ).catchError((e) {
+        throw (e);
+      });
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        showToast("Login succesful");
+        setState(() {
+          loading = false;
+        });
+        return userModelFromJson(response.body);
+      } else {
+        setState(() {
+          loading = false;
+        });
+        showToast(
+            jsonDecode(response.body)['message'] ?? "Something went wrong");
+        return null;
+      }
+    }
+  }
+
+  showToast(String msg) {
+    Fluttertoast.showToast(
+      msg: "$msg",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 2,
+    );
+  }
 
   final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
   Widget _buildphoneNumber() {
-    return TextFormField(
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        labelText: 'Phone Number',
+    return Theme(
+      data: ThemeData(primaryColor: Theme.of(context).accentColor),
+      child: TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Email',
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Email is Required';
+          }
+          if (!RegExp(
+                  r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")
+              .hasMatch(value)) {
+            return 'Please enter a valid emaill';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _email = value;
+        },
       ),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Phone Number is required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _phoneNumber = value;
-      },
     );
   }
 
   Widget _buildpassWord() {
-    return TextFormField(
-      keyboardType: TextInputType.visiblePassword,
-      decoration: InputDecoration(
-        labelText: 'Password',
+    return Theme(
+      data: ThemeData(
+        primaryColor: Theme.of(context).accentColor
       ),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Password is Required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _password = value;
-      },
+      child: TextFormField(
+        keyboardType: TextInputType.visiblePassword,
+        decoration: InputDecoration(
+          labelText: 'Password',
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Password is Required';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _password = value;
+        },
+      ),
     );
   }
 
@@ -62,6 +127,7 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               height: 20,
             ),
+            loading ? CircularProgressIndicator() :
             Container(
               height: 40,
               width: 140,
@@ -73,12 +139,7 @@ class _LoginFormState extends State<LoginForm> {
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 17),
                 ),
-                onPressed: () {
-                  if (!_loginKey.currentState.validate()) {
-                    return;
-                  }
-                  _loginKey.currentState.save();
-                },
+                onPressed: () => loginUser()
               ),
             ),
           ],
