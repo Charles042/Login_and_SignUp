@@ -25,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
       setState(() {
         loading = true;
       });
-      final String url = "https://simple-node-login.herokuapp.com/user/signup";
+      final String url = "https://simple-node-login.herokuapp.com/user/login";
       var response = await http.post(
         url,
         body: {
