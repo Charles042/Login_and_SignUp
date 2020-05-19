@@ -18,7 +18,7 @@ class _FormsState extends State<Forms> {
 
   bool loading = false;
 
-  Future <UserModel> createUser() async {
+  Future<UserModel> createUser() async {
     FormState form = _formKey.currentState;
     form.save();
     if (form.validate()) {
@@ -72,7 +72,9 @@ class _FormsState extends State<Forms> {
   Widget _buildFirstName() {
     return Theme(
       data: ThemeData(
-        primaryColor: Theme.of(context).accentColor,
+        primaryColor: Theme
+            .of(context)
+            .accentColor,
       ),
       child: TextFormField(
         decoration: InputDecoration(
@@ -94,7 +96,9 @@ class _FormsState extends State<Forms> {
   Widget _buildLastName() {
     return Theme(
       data: ThemeData(
-        primaryColor: Theme.of(context).accentColor,
+        primaryColor: Theme
+            .of(context)
+            .accentColor,
       ),
       child: TextFormField(
         decoration: InputDecoration(labelText: 'Last Name'),
@@ -114,7 +118,9 @@ class _FormsState extends State<Forms> {
   Widget _buildEmail() {
     return Theme(
       data: ThemeData(
-        primaryColor: Theme.of(context).accentColor,
+        primaryColor: Theme
+            .of(context)
+            .accentColor,
       ),
       child: TextFormField(
         decoration: InputDecoration(
@@ -125,7 +131,7 @@ class _FormsState extends State<Forms> {
             return 'Input an Email';
           }
           if (!RegExp(
-                  r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")
+              r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")
               .hasMatch(value)) {
             return 'Please enter a valid emaill';
           }
@@ -141,7 +147,9 @@ class _FormsState extends State<Forms> {
   Widget _buildPassword() {
     return Theme(
       data: ThemeData(
-        primaryColor: Theme.of(context).accentColor,
+        primaryColor: Theme
+            .of(context)
+            .accentColor,
       ),
       child: TextFormField(
         keyboardType: TextInputType.visiblePassword,
@@ -181,16 +189,20 @@ class _FormsState extends State<Forms> {
                 ),
                 loading
                     ? CircularProgressIndicator()
-                    : RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        color: Colors.blueAccent,
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(color: Colors.white, fontSize: 17),
-                        ),
-                        onPressed: () => createUser(),
-                      )
+                    : Container(
+                  height: 40,
+                  width: 140,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Colors.blueAccent,
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    ),
+                    onPressed: () => createUser(),
+                  ),
+                )
               ],
             ),
           ),
